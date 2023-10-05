@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "flatfile develop processor/index.ts",
-    "deploy": "flatfile deploy processor/index.ts && flatfile deploy processor/space-configure.ts"
+    "dev": "flatfile develop processors/member-onboarding.ts",
+    "deploy": "flatfile deploy processors/member-onboarding.ts"
   },
   "keywords": [],
   "author": "",
