@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "flatfile develop processors/member-onboarding.ts",
-    "deploy": "flatfile deploy processors/member-onboarding.ts"
+    "dev": "flatfile develop flatfile.ts"
   },
   "keywords": [],
   "author": "",

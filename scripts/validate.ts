@@ -8,7 +8,6 @@ export function email(record, ref)
     {
         if (!validRegex.test(val)) 
         {
-            console.log("Invalid email address");
             record.addError(ref, "Invalid email address");
         }
     }
