@@ -16,7 +16,6 @@ export function email(record, ref)
     {
         record.addError(ref, "Invalid email address (not a string)");
     }
-    return record;
 }
 
 export function date(record, ref, min = null, max = null)
@@ -33,13 +32,10 @@ export function date(record, ref, min = null, max = null)
     if(min !== null && date < moment(min, "MM/DD/YYYY"))
     {
         record.addError(ref, "Date must fall after " + min);
-        return record;
     }
 
     if(max !== null && date > moment(max, "MM/DD/YYYY"))
     {
         record.addError(ref, "Date must fall before " + max);
-        return record;
     }
-    return record;
 }

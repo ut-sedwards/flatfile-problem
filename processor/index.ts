@@ -1,10 +1,3 @@
-/**
- * This code is used in Flatfile's Beginner Tutorial
- * https://flatfile.com/docs/quickstart
- *
- * To see all of Flatfile's code examples go to: https://github.com/FlatFilers/flatfile-docs-kitchen-sink
- */
-
 import { recordHook, FlatfileRecord } from "@flatfile/plugin-record-hook";
 import { Client, FlatfileEvent } from "@flatfile/listener";
 import api from "@flatfile/api";

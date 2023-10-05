@@ -4,9 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "flatfile develop typescript/index.ts",
-    "deploy-processor": "flatfile deploy typescript/index.ts",
-    "deploy-space": "flatfile deploy typescript/space-configure.ts"
+    "dev": "flatfile develop processor/index.ts",
+    "deploy": "flatfile deploy processor/index.ts && flatfile deploy processor/space-configure.ts"
   },
   "keywords": [],
   "author": "",

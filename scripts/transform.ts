@@ -12,7 +12,6 @@ export function properName(record, ref)
     {
         record.addError(ref, "Invalid " + ref);
     }
-    return record; 
 }
 
 
@@ -27,7 +26,6 @@ export function email(record, ref)
     {
         record.addError(ref, "Invalid email address (not a string)");
     }
-    return record;
 }
 
 export function date(record, ref)
@@ -44,5 +42,4 @@ export function date(record, ref)
     {
         record.set(ref, date.format("YYYY-MM-DD"));
     }
-    return record;
 }
