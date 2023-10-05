@@ -123,7 +123,7 @@ export default function (listener: Client) {
                   label: "Member ID",
                 },
                 {
-                  key: "noteDate",
+                  key: "date",
                   type: "date",
                   label: "Date",
                 },

@@ -13,13 +13,13 @@ The pre-set credentials are pointing to a development only environment and can b
 
 ## Development
 
-To run the project and develop locally run `npx flatfile develop typescript/index.ts` to start a local listener.
+To run the project and develop locally run `yarn dev` or `npx flatfile develop typescript/index.ts` to start a local listener.
 
 ## Deployment
 
-To deploy the processing code run `npx flatfile deploy typescript/index.ts`
+To deploy the processing code run `yarn deploy-processor` or `npx flatfile deploy typescript/index.ts`
 
-To deploy the space configuration run `npx flatfile deploy typescript/space-configure.ts`
+To deploy the space configuration run `yarn deploy-confifguration` or `npx flatfile deploy typescript/space-configure.ts`
 
 
 ## See all code examples

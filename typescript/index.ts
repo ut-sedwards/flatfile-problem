@@ -9,53 +9,42 @@ import { recordHook, FlatfileRecord } from "@flatfile/plugin-record-hook";
 import { Client, FlatfileEvent } from "@flatfile/listener";
 import api from "@flatfile/api";
 import axios from "axios";
-import properCase from "proper-case";
 import { automap } from "@flatfile/plugin-automap";
+import * as transform from "../scripts/transform";
+import * as validate from "../scripts/validate";
 
-// Part 1: Create a Workbook (https://flatfile.com/docs/quickstart/meet-the-workbook)
-// If you haven't completed step one in, you can run `npm run create-workbook`
-
-const webhookReceiver = process.env.WEBHOOK_SITE_URL || "https://webhook.site/ae74b7ec-cbdb-40f8-af07-6b203a858b82"; // TODO: Update this with your webhook.site URL for Part 4
+const webhookReceiver = process.env.WEBHOOK_SITE_URL || "https://webhook.site/ae74b7ec-cbdb-40f8-af07-6b203a858b82";
 
 export default function flatfileEventListener(listener: Client) {
-  // Part 2: Setup a listener (https://flatfile.com/docs/quickstart/meet-the-listener)
   listener.on("**", (event: FlatfileEvent) => {
-    // Log all events
     console.log(`Received event: ${event.topic}`);
   });
 
-  // Part 3: Transform and validate (https://flatfile.com/docs/quickstart/add-data-transformation)
+  // MEMBERS SHEET
   listener.use(
     recordHook("members", (record: FlatfileRecord) => {
       
-      // FIRST NAME
-      const fNameVal = record.get("firstName");
-      if (typeof fNameVal === "string") {
-        record.set("firstName", properCase(fNameVal));
-      } else {
-        record.addError("firstName", "Invalid first name");
-      }
-    
-      // LAST NAME
-      const lNameVal = record.get("lastName");
-      if (typeof lNameVal === "string") {
-        record.set("lastName", properCase(lNameVal));
-      } else {
-        record.addError("lastName", "Invalid last name");
-      }
-
-      // EMAIL ADDRESS
-      const email = record.get("email") as string;
-      const validEmailAddress = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!validEmailAddress.test(email)) {
-        console.log("Invalid email address");
-        record.addError("email", "Invalid email address");
-      }
-
+      transform.properName(record, "firstName");
+      
+      transform.properName(record, "lastName");
+  
+      transform.email(record, "email");
+      validate.email(record, "email");
+      
       return record;
     })
   );
 
+  // MEMBER_NOTES SHEET
+  listener.use(
+    recordHook("notes", (record: FlatfileRecord) => {
+      
+      validate.date(record, "date");
+      transform.date(record, "date");
+      
+      return record;
+    })
+  );
 
   // FILE UPLOAD HANDLERS
   listener.use(
@@ -83,7 +72,8 @@ export default function flatfileEventListener(listener: Client) {
     })
   );
 
-  // Part 4: Configure a submit Action (https://flatfile.com/docs/quickstart/submit-action)
+
+  // SUBMIT ACTIONS
   listener
     .filter({ job: "workbook:submitAction" })
     .on("job:ready", async (event: FlatfileEvent) => {
