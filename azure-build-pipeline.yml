@@ -52,13 +52,13 @@ jobs:
       command: custom
       verbose: false
       customCommand: run dist
-  - task: ArchiveFiles@2
-    displayName: Archive dist
-    inputs:
-      rootFolderOrFile: dist
-      includeRootFolder: false
+  # - task: ArchiveFiles@2
+  #   displayName: Archive dist
+  #   inputs:
+  #     rootFolderOrFile: dist
+  #     includeRootFolder: false
   - task: PublishPipelineArtifact@1
     displayName: Publish Pipeline Artifact
     inputs:
-      path: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+      path: $(Build.ArtifactStagingDirectory)/dist
       artifactName: flatfile
