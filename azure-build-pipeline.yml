@@ -19,10 +19,10 @@ jobs:
   steps:
   - checkout: self
     fetchDepth: 1
-  - task: NodeTool@0
-    displayName: Node Available on Machine
-    inputs:
-      versionSpec: 18
+  # - task: NodeTool@0
+  #   displayName: Node Available on Machine
+  #   inputs:
+  #     versionSpec: 18
   - task: Npm@1
     displayName: Update Version
     inputs:
@@ -49,7 +49,7 @@ jobs:
   - task: ArchiveFiles@2
     displayName: Archive dist
     inputs:
-      # rootFolderOrFile: /
+      rootFolderOrFile: ./
       includeRootFolder: true
   - task: PublishPipelineArtifact@1
     displayName: Publish Pipeline Artifact
