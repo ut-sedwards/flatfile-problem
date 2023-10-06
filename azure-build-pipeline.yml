@@ -60,5 +60,5 @@ jobs:
   - task: PublishPipelineArtifact@1
     displayName: Publish Pipeline Artifact
     inputs:
-      path: $(Build.ArtifactStagingDirectory)/dist
+      path: $(Agent.BuildDirectory)/dist
       artifactName: flatfile
