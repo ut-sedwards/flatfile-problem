@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "flatfile develop ./src/flatfile.ts",
+    "dist": "mkdir -p dist && cp -R node_modules src package.json dist",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
     "lint:ci": "eslint . --ext .ts --color --quiet"
