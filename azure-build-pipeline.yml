@@ -24,12 +24,6 @@ jobs:
     inputs:
       versionSpec: 18
   - task: Npm@1
-    displayName: npm install angular cli 
-    inputs:
-      command: custom
-      verbose: false
-      customCommand: install -g @angular/cli
-  - task: Npm@1
     displayName: Update Version
     inputs:
       command: custom
@@ -46,6 +40,12 @@ jobs:
     displayName: yarn install
     inputs:
       script: 'yarn install --frozen-lockfile'
+  - task: Npm@1
+    displayName: Lint Build
+    inputs:
+      command: custom
+      verbose: false
+      customCommand: run lint
   - task: Npm@1
     displayName: Create Build
     inputs:
