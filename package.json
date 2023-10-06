@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "flatfile develop ./src/flatfile.ts",
-    "lint": "eslint . --ext .ts"
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix",
+    "lint:ci": "eslint . --ext .ts --color --quiet"
   },
   "keywords": [],
   "author": "",
