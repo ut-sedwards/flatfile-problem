@@ -49,7 +49,7 @@ jobs:
   - task: ArchiveFiles@2
     displayName: Archive dist
     inputs:
-      rootFolderOrFile: ./
+      rootFolderOrFile: .
       includeRootFolder: false
   - task: PublishPipelineArtifact@1
     displayName: Publish Pipeline Artifact
