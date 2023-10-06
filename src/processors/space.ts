@@ -143,40 +143,40 @@ export async function configure(context) {
           ],
         },
       ],
-      actions: [
-        {
-          operation: "submitUAT",
-          mode: "foreground",
-          label: "Load Production",
-          description: "Send data to UAT environment.",
-          primary: true,
-        },
-        {
-          operation: "submitProduction",
-          mode: "background",
-          label: "Load UAT",
-          description: "Send data to Production environment.",
-          primary: false,
-        },
-      ],
+      // actions: [
+      //   {
+      //     operation: "submitUAT",
+      //     mode: "foreground",
+      //     label: "Load Production",
+      //     description: "Send data to UAT environment.",
+      //     primary: true,
+      //   },
+      //   {
+      //     operation: "submitProduction",
+      //     mode: "background",
+      //     label: "Load UAT",
+      //     description: "Send data to Production environment.",
+      //     primary: false,
+      //   },
+      // ],
     });
 
-    await api.documents.create(spaceId, {
-      title: "Getting Started",
-      body:
-        "# Welcome\n" +
-        "### Say hello to your first customer Space in the new Flatfile!\n" +
-        "Let's begin by first getting acquainted with what you're seeing in your Space initially.\n" +
-        "---\n",
-    });
-    await api.documents.create(spaceId, {
-      title: "Member Data",
-      body:
-        "# Member Data\n" +
-        "### Say hello to my little friend!\n" +
-        "Let's begin by first getting acquainted with what you're seeing in your Space initially.\n" +
-        "---\n",
-    });
+    // await api.documents.create(spaceId, {
+    //   title: "Getting Started",
+    //   body:
+    //     "# Welcome\n" +
+    //     "### Say hello to your first customer Space in the new Flatfile!\n" +
+    //     "Let's begin by first getting acquainted with what you're seeing in your Space initially.\n" +
+    //     "---\n",
+    // });
+    // await api.documents.create(spaceId, {
+    //   title: "Member Data",
+    //   body:
+    //     "# Member Data\n" +
+    //     "### Say hello to my little friend!\n" +
+    //     "Let's begin by first getting acquainted with what you're seeing in your Space initially.\n" +
+    //     "---\n",
+    // });
 
     await api.jobs.complete(jobId, {
       outcome: {
@@ -196,15 +196,15 @@ export async function configure(context) {
   }
 }
 
-export async function theme(spaceId, environmentId) {
-  await api.spaces.update(spaceId, {
-    environmentId,
-    metadata: {
-      theme: {
-        sidebar: {
-          logo: "https://res.cloudinary.com/drbktebzm/image/upload/v1691610416/NugetImages/uniontrack-64x64_xqr1jx.png",
-        },
-      },
-    },
-  });
-}
+// export async function theme(spaceId, environmentId) {
+//   await api.spaces.update(spaceId, {
+//     environmentId,
+//     metadata: {
+//       theme: {
+//         sidebar: {
+//           logo: "https://res.cloudinary.com/drbktebzm/image/upload/v1691610416/NugetImages/uniontrack-64x64_xqr1jx.png",
+//         },
+//       },
+//     },
+//   });
+// }

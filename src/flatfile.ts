@@ -3,14 +3,17 @@ import { Client, FlatfileEvent } from "@flatfile/listener";
 import * as workbook from "./processors/workbook";
 import * as space from "./processors/space";
 
-const debug = process.env.DEBUG || false;
-
 export default function flatfileEventListener(listener: Client) {
-  if (debug === "true") {
-    listener.on("**", (event: FlatfileEvent) => {
-      console.log(`Received event: ${event.topic}`);
+  listener.on("**", (event: FlatfileEvent) => {
+    console.log(`Received event: ${event.topic}`);
+  });
+
+  // SPACE CONFIGURATION
+  listener
+    .filter({ job: "space:configure" })
+    .on("job:ready", async (event: FlatfileEvent) => {
+      space.configure(event.context);
     });
-  }
 
   // MEMBERS SHEET
   listener.use(
@@ -26,18 +29,11 @@ export default function flatfileEventListener(listener: Client) {
     })
   );
 
-  // SPACE CONFIGURATION
-  listener
-    .filter({ job: "space:configure" })
-    .on("job:ready", async (event: FlatfileEvent) => {
-      space.configure(event.context);
-    });
-
-  // APPLY THEME
-  listener.on(
-    "space:created",
-    async ({ context: { spaceId, environmentId } }) => {
-      space.theme(spaceId, environmentId);
-    }
-  );
+  // // APPLY THEME
+  // listener.on(
+  //   "space:configure",
+  //   async ({ context: { spaceId, environmentId } }) => {
+  //     space.theme(spaceId, environmentId);
+  //   }
+  // );
 }
