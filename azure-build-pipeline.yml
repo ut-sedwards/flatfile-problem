@@ -46,12 +46,6 @@ jobs:
       command: custom
       verbose: false
       customCommand: run lint:ci
-  - task: Npm@1
-    displayName: Build Project
-    inputs:
-      command: custom
-      verbose: false
-      customCommand: run dist
   - task: ArchiveFiles@2
     displayName: Archive dist
     inputs:
