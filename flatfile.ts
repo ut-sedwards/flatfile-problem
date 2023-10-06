@@ -3,8 +3,6 @@ import { Client, FlatfileEvent } from "@flatfile/listener";
 import * as workbook from "./processors/workbook";
 import * as space from "./processors/space";
 
-import api from "@flatfile/api";
-
 const debug = process.env.DEBUG || false;
 
 export default function flatfileEventListener(listener: Client) {
