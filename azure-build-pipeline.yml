@@ -25,6 +25,17 @@ jobs:
       command: custom
       verbose: false
       customCommand: version $(appVersion) --no-git-tag-version
+  - task: Cache@2
+    inputs:
+      key: 'V1 | "$(Agent.OS)" | yarn.lock'
+      path: $(npm_config_cache)
+      cacheHitVar: MODULES_CACHE_RESTORED 
+    displayName: Cache NPM packages
+    continueOnError: true
+  - task: CmdLine@2
+    displayName: yarn install
+    inputs:
+      script: 'yarn install --frozen-lockfile'
   - task: Npm@1
     displayName: Run ESLint
     inputs:
