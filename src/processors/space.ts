@@ -150,7 +150,7 @@ export async function configure(context) {
       ],
     });
 
-    const doc = await api.documents.create(spaceId, {
+    await api.documents.create(spaceId, {
       title: "Getting Started",
       body:
         "# Welcome\n" +
@@ -158,7 +158,7 @@ export async function configure(context) {
         "Let's begin by first getting acquainted with what you're seeing in your Space initially.\n" +
         "---\n",
     });
-    const memberDoc = await api.documents.create(spaceId, {
+    await api.documents.create(spaceId, {
       title: "Member Data",
       body:
         "# Member Data\n" +
@@ -186,7 +186,7 @@ export async function configure(context) {
 }
 
 export async function theme(spaceId, environmentId) {
-  const updateSpace = await api.spaces.update(spaceId, {
+  await api.spaces.update(spaceId, {
     environmentId,
     metadata: {
       theme: {

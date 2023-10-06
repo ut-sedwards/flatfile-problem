@@ -1,7 +1,7 @@
 import { recordHook, FlatfileRecord } from "@flatfile/plugin-record-hook";
 import { Client, FlatfileEvent } from "@flatfile/listener";
-import * as workbook from "./processors/workbook";
-import * as space from "./processors/space";
+import * as workbook from "./src/processors/workbook";
+import * as space from "./src/processors/space";
 
 const debug = process.env.DEBUG || false;
 

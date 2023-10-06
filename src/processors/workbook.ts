@@ -1,5 +1,5 @@
-import * as transform from "../scripts/transform";
-import * as validate from "../scripts/validate";
+import * as transform from "../../scripts/transform";
+import * as validate from "../../scripts/validate";
 
 export function processMembers(record) {
   transform.properName(record, "firstName");
