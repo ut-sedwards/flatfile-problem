@@ -1,5 +1,4 @@
 import * as transform from "../scripts/transform";
-import * as validate from "../scripts/validate";
 
 export function processMembers(record) {
   transform.properName(record, "firstName");
@@ -7,13 +6,15 @@ export function processMembers(record) {
   transform.properName(record, "lastName");
 
   transform.email(record, "email");
-  validate.email(record, "email");
+
+  transform.ssn(record, "ssn");
+
+  transform.phone(record, "phone");
 
   return record;
 }
 
 export function processNotes(record) {
-  validate.date(record, "date");
   transform.date(record, "date");
 
   return record;

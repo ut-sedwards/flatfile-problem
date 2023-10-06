@@ -107,6 +107,17 @@ export async function configure(context) {
               label: "Email",
               constraints: [{ type: "unique" }],
             },
+            {
+              key: "ssn",
+              type: "string",
+              label: "SSN",
+              constraints: [{ type: "unique" }],
+            },
+            {
+              key: "phone",
+              type: "string",
+              label: "Mobile Phone",
+            },
           ],
         },
         {
