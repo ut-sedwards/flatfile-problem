@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "flatfile develop ./src/flatfile.ts",
-    "lint": "eslint . --ext .ts",
-    "dist": "mkdir -p dist && cp -R node_modules src dist"
+    "lint": "eslint . --ext .ts"
   },
   "keywords": [],
   "author": "",
