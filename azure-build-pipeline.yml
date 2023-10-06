@@ -1,0 +1,64 @@
+name: '$(major).$(minor).$(revision)'
+pr: none
+trigger:
+  batch: true
+  branches:
+    include:
+    - main
+variables:
+  npm_config_cache: $(Pipeline.Workspace)/.yarn
+  major: 0
+  minor: 0
+  revision: $[counter(variables['minor'], 1)]
+  appVersion: $(major).$(minor).$(revision)
+jobs:
+- job: Job_1
+  displayName: Agent job 1
+  pool:
+    vmImage: ubuntu-latest
+  steps:
+  - checkout: self
+    fetchDepth: 1
+  - task: NodeTool@0
+    displayName: Node Available on Machine
+    inputs:
+      versionSpec: 18
+  - task: Npm@1
+    displayName: npm install angular cli 
+    inputs:
+      command: custom
+      verbose: false
+      customCommand: install -g @angular/cli
+  - task: Npm@1
+    displayName: Update Version
+    inputs:
+      command: custom
+      verbose: false
+      customCommand: version $(appVersion) --no-git-tag-version
+  - task: Cache@2
+    inputs:
+      key: 'V1 | "$(Agent.OS)" | yarn.lock'
+      path: $(npm_config_cache)
+      cacheHitVar: MODULES_CACHE_RESTORED 
+    displayName: Cache NPM packages
+    continueOnError: true
+  - task: CmdLine@2
+    displayName: yarn install
+    inputs:
+      script: 'yarn install --frozen-lockfile'
+  - task: Npm@1
+    displayName: Create Build
+    inputs:
+      command: custom
+      verbose: false
+      customCommand: run dist
+  - task: ArchiveFiles@2
+    displayName: Archive dist
+    inputs:
+      rootFolderOrFile: dist
+      includeRootFolder: false
+  - task: PublishPipelineArtifact@1
+    displayName: Publish Pipeline Artifact
+    inputs:
+      path: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+      artifactName: flatfile
